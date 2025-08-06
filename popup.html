@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Content Blocker</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="header-content">
+        <span class="extension-icon">🤖</span>
+        <h1 class="extension-title">AI Content Blocker</h1>
+      </div>
+      <div class="toggle-container">
+        <label class="toggle-switch">
+          <input type="checkbox" id="enabledToggle">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <main class="popup-main">
+      <section class="stats-section">
+        <h2 class="section-title">Today's Activity</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" id="scannedCount">-</span>
+            <span class="stat-label">Tweets Scanned</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="blockedCount">-</span>
+            <span class="stat-label">AI Content Blocked</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="blockPercentage">-</span>
+            <span class="stat-label">Block Rate</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="mode-section">
+        <h2 class="section-title">Detection Mode</h2>
+        <div class="mode-buttons">
+          <button class="mode-btn" id="blockMode" data-mode="block">
+            <span class="mode-icon">🚫</span>
+            <span class="mode-text">Block</span>
+          </button>
+          <button class="mode-btn" id="flagMode" data-mode="flag">
+            <span class="mode-icon">🏷️</span>
+            <span class="mode-text">Flag</span>
+          </button>
+        </div>
+        <p class="mode-description" id="modeDescription">
+          Hide AI-generated content completely
+        </p>
+      </section>
+
+      <section class="threshold-section">
+        <h2 class="section-title">Sensitivity</h2>
+        <div class="threshold-control">
+          <input type="range" id="thresholdSlider" min="0.1" max="1" step="0.1" value="0.7">
+          <div class="threshold-labels">
+            <span class="threshold-label">Less Sensitive</span>
+            <span class="threshold-value" id="thresholdValue">70%</span>
+            <span class="threshold-label">More Sensitive</span>
+          </div>
+        </div>
+        <p class="threshold-description">
+          Adjust how confident the detector needs to be before taking action
+        </p>
+      </section>
+    </main>
+
+    <footer class="popup-footer">
+      <button class="options-btn" id="optionsBtn">
+        <span class="options-icon">⚙️</span>
+        Advanced Settings
+      </button>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

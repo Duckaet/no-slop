@@ -1,0 +1,196 @@
+/* AI Content Blocker Styles */
+
+.ai-content-blocked {
+  background: #f7f9fa;
+  border: 1px solid #e1e8ed;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 8px 0;
+  transition: all 0.3s ease;
+}
+
+.ai-block-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ai-block-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.ai-block-icon {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.ai-block-text {
+  color: #536471;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.ai-block-confidence {
+  background: #f0f3f4;
+  color: #536471;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ai-show-anyway {
+  background: #1d9bf0;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ai-show-anyway:hover {
+  background: #1a8cd8;
+}
+
+/* AI Content Flagged - Minimal gradient style */
+.ai-flagged {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.08) 0%, rgba(142, 68, 173, 0.12) 100%) !important;
+  border-left: 3px solid rgba(155, 89, 182, 0.4) !important;
+  transition: all 0.3s ease !important;
+  position: relative;
+}
+
+/* Optional: Add subtle hover effect for flagged tweets */
+.ai-flagged:hover {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.12) 0%, rgba(142, 68, 173, 0.16) 100%) !important;
+}
+
+/* Optional: Add a small indicator that appears on hover */
+.ai-flagged::before {
+  content: '🤖 ' attr(data-ai-confidence) '%';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(155, 89, 182, 0.9);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.ai-flagged:hover::before {
+  opacity: 1;
+}
+
+.ai-hide-again {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e1e8ed;
+}
+
+.ai-hide-button {
+  background: #f7f9fa;
+  color: #536471;
+  border: 1px solid #e1e8ed;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai-hide-button:hover {
+  background: #e1e8ed;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .ai-content-blocked {
+    background: #16202a;
+    border-color: #38444d;
+  }
+  
+  .ai-block-text {
+    color: #8b98a5;
+  }
+  
+  .ai-block-confidence {
+    background: #273340;
+    color: #8b98a5;
+  }
+  
+  /* Dark mode flagged tweets */
+  .ai-flagged {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.15) 0%, rgba(142, 68, 173, 0.20) 100%) !important;
+    border-left: 3px solid rgba(155, 89, 182, 0.6) !important;
+  }
+  
+  .ai-flagged:hover {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.20) 0%, rgba(142, 68, 173, 0.25) 100%) !important;
+  }
+  
+  .ai-flagged::before {
+    background: rgba(155, 89, 182, 0.95);
+  }
+  
+  .ai-hide-again {
+    border-color: #38444d;
+  }
+  
+  .ai-hide-button {
+    background: #16202a;
+    color: #8b98a5;
+    border-color: #38444d;
+  }
+  
+  .ai-hide-button:hover {
+    background: #273340;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .ai-content-blocked,
+  .ai-show-anyway,
+  .ai-hide-button {
+    transition: none;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .ai-block-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .ai-show-anyway {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .ai-content-blocked {
+    border-width: 2px;
+  }
+  
+  .ai-block-text,
+  .ai-flag-text {
+    font-weight: 700;
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "name": "ai-content-blocker",
+  "version": "1.0.0",
+  "description": "A privacy-first browser extension that detects and blocks AI-generated content on X (Twitter)",
+  "main": "background.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint *.js",
+    "lint:fix": "eslint *.js --fix",
+    "build": "npm run lint && npm run test",
+    "dev": "web-ext run --source-dir . --target chromium",
+    "package": "web-ext build --source-dir . --artifacts-dir dist",
+    "validate": "web-ext lint --source-dir .",
+    "format": "prettier --write \"*.{js,html,css,json,md}\""
+  },
+  "keywords": [
+    "browser-extension",
+    "ai-detection",
+    "twitter",
+    "x",
+    "privacy",
+    "content-filtering",
+    "chrome-extension"
+  ],
+  "author": "AI Content Blocker Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@testing-library/dom": "^9.3.4",
+    "@testing-library/jest-dom": "^6.1.4",
+    "eslint": "^8.57.0",
+    "eslint-plugin-chrome-extension": "^2.0.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.1.0",
+    "web-ext": "^7.8.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "collectCoverageFrom": [
+      "*.js",
+      "!node_modules/**",
+      "!dist/**"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "webextensions": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "plugins": [
+      "chrome-extension"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": "warn",
+      "no-unused-vars": "error",
+      "chrome-extension/no-browser-in-background": "error"
+    },
+    "globals": {
+      "chrome": "readonly"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/ai-content-blocker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/ai-content-blocker/issues"
+  },
+  "homepage": "https://github.com/yourusername/ai-content-blocker#readme",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

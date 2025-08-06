@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Content Blocker - Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <div class="header-content">
+        <span class="extension-icon">🤖</span>
+        <h1 class="extension-title">AI Content Blocker Settings</h1>
+      </div>
+    </header>
+
+    <nav class="options-nav">
+      <button class="nav-btn active" data-section="general">General</button>
+      <button class="nav-btn" data-section="detection">Detection</button>
+      <button class="nav-btn" data-section="whitelist">Whitelist</button>
+      <button class="nav-btn" data-section="privacy">Privacy</button>
+    </nav>
+
+    <main class="options-main">
+      <!-- General Settings -->
+      <section id="general" class="settings-section active">
+        <h2 class="section-title">General Settings</h2>
+        
+        <div class="setting-group">
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label" for="extensionEnabled">Enable AI Content Blocker</label>
+              <p class="setting-description">Turn the extension on or off globally</p>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="extensionEnabled">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label" for="detectionMode">Detection Mode</label>
+              <p class="setting-description">Choose how to handle detected AI content</p>
+            </div>
+            <div class="setting-control">
+              <select id="detectionMode" class="setting-select">
+                <option value="block">Block (Hide completely)</option>
+                <option value="flag">Flag (Show with warning)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label" for="confidenceThreshold">Confidence Threshold</label>
+              <p class="setting-description">Minimum confidence required to take action (<span id="thresholdDisplay">70%</span>)</p>
+            </div>
+            <div class="setting-control">
+              <input type="range" id="confidenceThreshold" min="0.1" max="1" step="0.05" value="0.7" class="setting-slider">
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label" for="showStats">Show Statistics</label>
+              <p class="setting-description">Display blocking statistics in popup</p>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="showStats" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Detection Settings -->
+      <section id="detection" class="settings-section">
+        <h2 class="section-title">Detection Rules</h2>
+        
+        <div class="setting-group">
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label">Custom Detection Rules</label>
+              <p class="setting-description">Add custom patterns to detect AI content (one per line)</p>
+            </div>
+            <div class="setting-control full-width">
+              <textarea id="customRules" class="setting-textarea" placeholder="Enter custom patterns here...
+Example: /my custom pattern/i
+Another pattern
+#MyAIHashtag"></textarea>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label">Built-in Detection Patterns</label>
+              <p class="setting-description">Currently active patterns for detecting AI content</p>
+            </div>
+            <div class="setting-control full-width">
+              <div class="patterns-list" id="patternsList">
+                <!-- Patterns will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Whitelist Settings -->
+      <section id="whitelist" class="settings-section">
+        <h2 class="section-title">Whitelisted Accounts</h2>
+        
+        <div class="setting-group">
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label">Add Account to Whitelist</label>
+              <p class="setting-description">Accounts that should never be blocked or flagged</p>
+            </div>
+            <div class="setting-control full-width">
+              <div class="input-group">
+                <input type="text" id="whitelistInput" class="setting-input" placeholder="@username or display name">
+                <button id="addWhitelistBtn" class="btn btn-primary">Add</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label">Whitelisted Accounts</label>
+              <p class="setting-description">These accounts will not be blocked or flagged</p>
+            </div>
+            <div class="setting-control full-width">
+              <div class="whitelist-container" id="whitelistContainer">
+                <p class="empty-state" id="emptyWhitelist">No accounts whitelisted yet</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Privacy Settings -->
+      <section id="privacy" class="settings-section">
+        <h2 class="section-title">Privacy & Data</h2>
+        
+        <div class="setting-group">
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label" for="telemetryEnabled">Anonymous Usage Statistics</label>
+              <p class="setting-description">Help improve the extension by sharing anonymous usage data</p>
+            </div>
+            <div class="setting-control">
+              <label class="toggle-switch">
+                <input type="checkbox" id="telemetryEnabled">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label">Data Storage</label>
+              <p class="setting-description">All detection happens locally. No data is sent to external servers.</p>
+            </div>
+            <div class="setting-control">
+              <div class="info-badge">
+                <span class="info-icon">🔒</span>
+                <span class="info-text">Privacy First</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="setting-item">
+            <div class="setting-info">
+              <label class="setting-label">Clear Extension Data</label>
+              <p class="setting-description">Reset all settings and statistics to defaults</p>
+            </div>
+            <div class="setting-control">
+              <button id="clearDataBtn" class="btn btn-danger">Clear All Data</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="options-footer">
+      <div class="footer-info">
+        <p class="version-info">AI Content Blocker v1.0.0</p>
+        <p class="credits">Built with privacy in mind</p>
+      </div>
+      <div class="footer-actions">
+        <button id="resetBtn" class="btn btn-secondary">Reset to Defaults</button>
+        <button id="saveBtn" class="btn btn-primary">Save Settings</button>
+      </div>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
